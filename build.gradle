@@ -40,15 +40,15 @@ subprojects {
   pluginManager.withPlugin('org.jetbrains.kotlin.jvm') {
     compileKotlin {
       kotlinOptions {
-        jvmTarget = "1.8"
-        freeCompilerArgs = ['-Xjsr305=strict', '-progressive', '-Xjvm-default=enable']
+        jvmTarget = deps.build.kotlin.jvmTarget
+        freeCompilerArgs += deps.build.kotlin.defaultFreeCompilerArgs
       }
     }
 
     compileTestKotlin {
       kotlinOptions {
-        jvmTarget = "1.8"
-        freeCompilerArgs = ['-Xjsr305=strict', '-progressive', '-Xjvm-default=enable']
+        jvmTarget = deps.build.kotlin.jvmTarget
+        freeCompilerArgs += deps.build.kotlin.defaultFreeCompilerArgs
       }
     }
   }
