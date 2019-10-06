@@ -17,20 +17,11 @@
 plugins {
   id 'org.jetbrains.kotlin.jvm' apply false
   id 'org.jetbrains.kotlin.kapt' apply false
+  id 'com.diffplug.gradle.spotless' apply false
 }
 
 subprojects {
   apply from: rootProject.file('gradle/dependencies.gradle')
-  buildscript {
-    repositories {
-      mavenCentral()
-      jcenter()
-    }
-    dependencies {
-      classpath deps.build.gradlePlugins.kotlin
-      classpath deps.build.gradlePlugins.dokka
-    }
-  }
 
   repositories {
     mavenCentral()
@@ -62,6 +53,8 @@ subprojects {
       }
     }
   }
+
+  apply from: rootProject.file('gradle/config-spotless.gradle')
 }
 
 apply from: 'gradle/dependencies.gradle'
