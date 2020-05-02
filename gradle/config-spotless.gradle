@@ -15,10 +15,6 @@
  */
 
 apply plugin: 'com.diffplug.gradle.spotless'
-String[] copiedJavaFiles = [
-    // Add any copied files that should have their copyright header preserved
-    "copyright",
-].collect { "**/*${it}.java" } as String[]
 String[] copiedKotlinFiles = [
     // Add any copied files that should have their copyright header preserved
     "copyright",
@@ -42,15 +38,6 @@ spotless {
   kotlinGradle {
     target '*.gradle.kts'
     ktlint(deps.versions.ktlint).userData(deps.build.ktlintUserData)
-    trimTrailingWhitespace()
-    endWithNewline()
-  }
-  java {
-    target "**/*.java"
-    targetExclude(copiedJavaFiles)
-    googleJavaFormat(deps.versions.gjf)
-    licenseHeaderFile rootProject.file('spotless/copyright.java')
-    removeUnusedImports()
     trimTrailingWhitespace()
     endWithNewline()
   }
